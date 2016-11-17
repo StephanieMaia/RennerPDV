@@ -1,77 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard Template for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/jquery-3.1.1.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js" type="text/javascript"></script>
-  </head>
+        <title>Dashboard Template for Bootstrap</title>
 
-  <body>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <script src="js/jquery-3.1.1.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/produtos.js" type="text/javascript"></script>
+    </head>
 
-    <nav class="navbar navbar-inverse navbar-static-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">RennerPDV</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Frente de Caixa</a></li>
-            <li><a href="#">Produtos</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <body>
 
-    <div class="container-fluid">
-      <div class="row">
-      
-        <div class="col-sm-9 col-md-12 main">
-          <h1 class="page-header">Produtos</h1>
-          <button type="button" class="btn btn-success pull-right">
-          <span class="glyphicon glyphicon-plus"></span>Cadastrar</button>"
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">RennerPDV</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Frente de Caixa</a></li>
+                        <li><a href="#">Produtos</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Código</th>
-                  <th>Nome</th>
-                  <th>Marca</th>
-                  <th>Preço</th>
-                  <th>Quantidade</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>123456</td>
-                  <td>Camiseta</td>
-                  <td>Renner</td>
-                  <td>24,70</td>
-                  <td>6</td>
-                </tr>
-             
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+        <div class="container-fluid">
+            <div class="row">
 
-  </body>
+                <div class="col-sm-9 col-md-12 main">
+                    <button id="teste" type ="button">Teste</button>
+                    <h1 class="page-header">Produtos
+                    <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#cadastro-produto">
+                        <span class="glyphicon glyphicon-plus"></span>Cadastrar</button>
+                    </h1>
+                    <div class="table-responsive">
+                        <table id="lista-produtos" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nome</th>
+                                    <th>Marca</th>
+                                    <th>Preço</th>
+                                    <th>Quantidade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4">Quantidade total em estoque:</td>
+                                    <td id="quantidade-total">xxx</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <div id="cadastro-produto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">Cadastrar Novo Produto</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <fieldset>
+                               
+                                 <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="codigo">Código</label>  
+                                    <div class="col-md-4">
+                                        <input id="codigo" name="codigo" placeholder="" class="form-control input-md" type="text">
+
+                                    </div>
+                                </div>
+                                 
+                                   <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="nome">Nome</label>  
+                                    <div class="col-md-4">
+                                        <input id="nome" name="nome" placeholder="" class="form-control input-md" type="text">
+
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="selectbasic">Marca</label>
+                                    <div class="col-md-4">
+                                        <select id="selectbasic" name="selectbasic" class="form-control">
+                                            <option value="0">--Selecione--</option>
+                                            <option value="Nike">Nike</option>
+                                            <option value="Hering">Hering</option>
+                                            <option value="Levis">Levis</option>
+                                            <option value="Adidas">Adidas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="valor">Preço Unitario</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">R$</span>
+                                            <input id="valor" name="valor" class="form-control" placeholder="" type="text">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="quantidade">Quantidade</label>  
+                                    <div class="col-md-4">
+                                        <input id="quantidade" name="quantidade" placeholder="" class="form-control input-md" type="text">
+
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </body>
 </html>
