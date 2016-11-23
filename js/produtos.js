@@ -18,7 +18,28 @@ $(document).ready(function() {  //lê todos os documentos ao final de td
     });
     //código para permitir que sejam digitados apenas numeros.
     $('#bt-cadastrar').click(function() {
-        $('#form-produto').submit(); ///chama o submit primeiro e depois da o alerta para não replicar a mensagem para o usúario.
+        var temErro = false;
+        
+        $('input, select').each(function (idx, elem){          //campo por campo
+            var valor = $(elem).val();
+              $(elem).parents('.form-group').removeClass('has-error')
+            
+            if (valor == ""){
+                temErro = true;
+                $(elem).parents('.form-group').addClass('has-error')
+            }
+           
+        });
+        
+        if (temErro == true){        //todos os campos juntos
+            
+        }else{
+             $('#form-produto').submit(); ///chama o submit primeiro e depois da o alerta para não replicar a mensagem para o usúario.
+              $('input, select').each(function (idx, elem){    
+                  $(elem).val("");
+        });
+    }
+       
     });
     $('#form-produto').submit(function(evento) { //mostra o alert para o usúario
         evento.preventDefault(); //para não redirecionar, passar por debaixo dos panos
@@ -73,6 +94,8 @@ function carregaRegistros() {
                     + "<td>" + obj.quantidade + "</td>"
                     + '<td><button type="button" class="bt-deletar btn btn-danger">'
                     + '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'   //botão excluir(glif)
+            + '<td><button type="button" class="bt-deletar btn btn-success">'
+                    + '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'
                     + '</button>'
                     + "</td>";
             "  </tr>";
@@ -84,7 +107,18 @@ function carregaRegistros() {
         $('.bt-deletar').click(function() { 
             var tr = $(this).parent().parent(); //pegando id
             var id = tr.attr('obj-id');
-            
+            var dados = {
+              id: id  
+            };
+            $.getJSON('/model/deletar.php', dados, function(retorno){
+                
+                 if (retorno.status === "ok") {
+                carregaRegistros();
+                $('#alert-produto').removeClass('hide');
+                $('#alert-produto').html('O Produto foi removido com sucesso!')
+            }
+                
+            });
         });
 
     });
